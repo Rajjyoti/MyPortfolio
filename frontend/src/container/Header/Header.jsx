@@ -1,5 +1,6 @@
 import React from 'react'
 import {motion} from 'framer-motion'
+import AppWrap from '../../wrapper/AppWrap'
 
 import {images} from '../../constants'
 import './Header.scss'
@@ -17,7 +18,7 @@ const scaleVariants = {
 
 const Header = () => {
   return (
-    <div id='home' className='app__header app__flex'>
+    <div className='app__header app__flex'>
       <motion.div
         whileInView={{x: [-100, 0], opacity: [0,1]}}
         transition={{duration: 0.5}}
@@ -39,7 +40,9 @@ const Header = () => {
       </motion.div>
       <motion.div
         whileInView={{opacity: [0,1]}}
-        transition={{duration: 0.5, delayChildren: 0.5}}
+        whileHover={{scale: 1.1}}
+        // transition={{duration: 0.5, type: 'spring'}}
+        transition={{duration: 0.5, delayChildren: 0.5, type: 'tween'}}
         className='app__header-img'
       >
         <img style={{height: 400, width: 400}} src={images.node} alt='profile_bg' />
@@ -56,6 +59,7 @@ const Header = () => {
       <motion.div
         variants={scaleVariants}
         whileInView={scaleVariants.whileInView}
+        
         className='app__header-circles'
       >
         {[images.react, images.redux, images.spring].map((circle, index) => (
@@ -68,4 +72,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default AppWrap(Header, 'home')
